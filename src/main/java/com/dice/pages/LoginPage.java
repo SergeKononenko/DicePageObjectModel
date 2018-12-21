@@ -12,6 +12,8 @@ public class LoginPage extends BasePageObject<LoginPage> {
 	private By emailField = By.id("email");
 	private By passwordField = By.id("password");
 	private By signInBtn = By.xpath("//button[@type='submit']");
+	private By loginErrorMsg = By.cssSelector(
+			"[data-automation-id='login-failure-help-message']");
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -29,6 +31,11 @@ public class LoginPage extends BasePageObject<LoginPage> {
 	public ProfilePage clickSignInButton() {
 		click(signInBtn);
 		return new ProfilePage(driver);
+	}
+
+	public String getLoginErrorMsg() {
+		waitForVisibilityOf(loginErrorMsg, 10);
+		return getText(loginErrorMsg);
 	}
 
 }
