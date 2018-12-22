@@ -4,24 +4,29 @@
 
 	<test thread-count="5" name="LoginTest-FF">
 		<parameter name="browser" value="firefox" />
+		<groups>
+			<run>
+				<exclude name="broken"></exclude>
+			</run>
+		</groups>
 		<classes>
 			<class name="com.serge.tests.LoginTest">
-				<methods>
-					<include name=".*positiveLogInTest.*" />
-					<exclude name="negativeLogInTest" />
-				</methods>
 			</class>
 		</classes>
 	</test> <!-- Test -->
 
 	<test thread-count="5" name="LoginTest-Chrome">
 		<parameter name="browser" value="chrome" />
+		<groups>
+			<run>
+				<exclude name="negative"></exclude>
+				<exclude name="broken"></exclude>
+			</run>
+		</groups>
 		<classes>
 			<class name="com.serge.tests.LoginTest">
-				<methods>
-					<include name=".*positiveLogInTest.*" />
-					<exclude name="negativeLogInTest" />
-				</methods>
+				<!-- <methods> <include name=".*positiveLogInTest.*" /> <exclude name="negativeLogInTest" 
+					/> </methods> -->
 			</class>
 		</classes>
 	</test> <!-- Test -->

@@ -12,9 +12,10 @@ import com.dice.pages.ProfilePage;
 
 public class LoginTest extends TestBase {
 
-	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class)
+	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class,
+			priority = 1, groups = { "positive" })
 	public void positiveLogInTest(Map<String, String> testData) {
-		
+
 		LoginPage loginPage = new LoginPage(driver, log);
 		String expectedPageTitle = "Seeker Dashboard - Profile";
 		String exectedProfileName = "Serge Kononenko";
@@ -24,10 +25,10 @@ public class LoginTest extends TestBase {
 		String description = testData.get("description")
 				.toUpperCase();
 
-		log.info("Tes NO:" + testNumber + " for "
-				+ description + " where\nEmail: " + email
-				+ ", password: " + password);
-		
+		log.info("Tes NO:" + testNumber + " for " + description
+				+ " where\nEmail: " + email + ", password: "
+				+ password);
+
 		loginPage.openLoginPage();
 		loginPage.fillEmailAndPassword(email, password);
 		ProfilePage profilePage = loginPage.clickSignInButton();
@@ -44,9 +45,10 @@ public class LoginTest extends TestBase {
 
 	}
 
-	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class)
+	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class, 
+			priority = 2, groups = { "negative" })
 	public void negativeLogInTest(Map<String, String> testData) {
-		
+
 		String expectedErrorMsg = "Email and/or password incorrect";
 		String testNumber = testData.get("no");
 		String email = testData.get("email");
@@ -54,9 +56,9 @@ public class LoginTest extends TestBase {
 		String description = testData.get("description")
 				.toUpperCase();
 
-		log.info("Tes NO:" + testNumber + " for "
-				+ description + " where\nEmail: " + email
-				+ ", password: " + password);
+		log.info("Tes NO:" + testNumber + " for " + description
+				+ " where\nEmail: " + email + ", password: "
+				+ password);
 
 		LoginPage loginPage = new LoginPage(driver, log);
 
