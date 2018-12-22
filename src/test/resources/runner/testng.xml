@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="Suite" parallel="tests" thread-count="2">
 
 	<test thread-count="5" name="LoginTest-FF">
 		<parameter name="browser" value="firefox" />
 		<classes>
-			<class name="com.serge.LoginTest">
+			<class name="com.serge.tests.LoginTest">
 				<methods>
 					<include name=".*positiveLogInTest.*" />
 					<exclude name="negativeLogInTest" />
@@ -17,7 +17,7 @@
 	<test thread-count="5" name="LoginTest-Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.serge.LoginTest">
+			<class name="com.serge.tests.LoginTest">
 				<methods>
 					<include name=".*positiveLogInTest.*" />
 					<exclude name="negativeLogInTest" />

@@ -1,5 +1,6 @@
 package com.dice.base;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +13,11 @@ public class BasePageObject<T> {
 
 	protected WebDriver driver;
 	protected WebDriverWait wait;
+	protected Logger log;
 
-	protected BasePageObject(WebDriver driver) {
+	protected BasePageObject(WebDriver driver, Logger log) {
 		this.driver = driver;
+		this.log = log;
 		wait = new WebDriverWait(driver, 40);
 	}
 

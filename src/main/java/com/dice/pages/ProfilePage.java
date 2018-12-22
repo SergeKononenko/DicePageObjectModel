@@ -1,5 +1,6 @@
 package com.dice.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,8 +15,8 @@ public class ProfilePage extends BasePageObject<ProfilePage> {
 	private By profileNameText = By
 			.cssSelector(".profile-contact-name");
 
-	protected ProfilePage(WebDriver driver) {
-		super(driver);
+	protected ProfilePage(WebDriver driver, Logger log) {
+		super(driver, log);
 
 	}
 

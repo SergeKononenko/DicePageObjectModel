@@ -1,4 +1,4 @@
-package com.serge;
+package com.serge.tests;
 
 import java.util.Map;
 
@@ -14,7 +14,8 @@ public class LoginTest extends TestBase {
 
 	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class)
 	public void positiveLogInTest(Map<String, String> testData) {
-		LoginPage loginPage = new LoginPage(driver);
+		
+		LoginPage loginPage = new LoginPage(driver, log);
 		String expectedPageTitle = "Seeker Dashboard - Profile";
 		String exectedProfileName = "Serge Kononenko";
 		String testNumber = testData.get("no");
@@ -23,7 +24,7 @@ public class LoginTest extends TestBase {
 		String description = testData.get("description")
 				.toUpperCase();
 
-		System.out.println("Tes NO:" + testNumber + " for "
+		log.info("Tes NO:" + testNumber + " for "
 				+ description + " where\nEmail: " + email
 				+ ", password: " + password);
 		
@@ -45,6 +46,7 @@ public class LoginTest extends TestBase {
 
 	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class)
 	public void negativeLogInTest(Map<String, String> testData) {
+		
 		String expectedErrorMsg = "Email and/or password incorrect";
 		String testNumber = testData.get("no");
 		String email = testData.get("email");
@@ -52,11 +54,11 @@ public class LoginTest extends TestBase {
 		String description = testData.get("description")
 				.toUpperCase();
 
-		System.out.println("Tes NO:" + testNumber + " for "
+		log.info("Tes NO:" + testNumber + " for "
 				+ description + " where\nEmail: " + email
 				+ ", password: " + password);
 
-		LoginPage loginPage = new LoginPage(driver);
+		LoginPage loginPage = new LoginPage(driver, log);
 
 		loginPage.openLoginPage();
 		loginPage.fillEmailAndPassword(email, password);

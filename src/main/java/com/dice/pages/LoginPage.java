@@ -1,5 +1,6 @@
 package com.dice.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -15,8 +16,8 @@ public class LoginPage extends BasePageObject<LoginPage> {
 	private By loginErrorMsg = By.cssSelector(
 			"[data-automation-id='login-failure-help-message']");
 
-	public LoginPage(WebDriver driver) {
-		super(driver);
+	public LoginPage(WebDriver driver, Logger log) {
+		super(driver, log);
 	}
 
 	public void openLoginPage() {
@@ -24,13 +25,15 @@ public class LoginPage extends BasePageObject<LoginPage> {
 	}
 
 	public void fillEmailAndPassword(String email, String pass) {
+		log.info("Filling up Email and Passsword");
 		type(email, emailField);
 		type(pass, passwordField);
 	}
 
 	public ProfilePage clickSignInButton() {
+		log.info("Clicking SignIn Button.");
 		click(signInBtn);
-		return new ProfilePage(driver);
+		return new ProfilePage(driver, log);
 	}
 
 	public String getLoginErrorMsg() {
