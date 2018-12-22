@@ -12,14 +12,23 @@ import com.dice.pages.ProfilePage;
 
 public class LoginTest extends TestBase {
 
-	@Test
-	public void positiveLogInTest() {
+	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class)
+	public void positiveLogInTest(Map<String, String> testData) {
 		LoginPage loginPage = new LoginPage(driver);
 		String expectedPageTitle = "Seeker Dashboard - Profile";
 		String exectedProfileName = "Serge Kononenko";
+		String testNumber = testData.get("no");
+		String email = testData.get("email");
+		String password = testData.get("password");
+		String description = testData.get("description")
+				.toUpperCase();
 
+		System.out.println("Tes NO:" + testNumber + " for "
+				+ description + " where\nEmail: " + email
+				+ ", password: " + password);
+		
 		loginPage.openLoginPage();
-		loginPage.fillEmailAndPassword("", "");
+		loginPage.fillEmailAndPassword(email, password);
 		ProfilePage profilePage = loginPage.clickSignInButton();
 		profilePage.waitForProfilePageToLoad();
 

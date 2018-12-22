@@ -2,17 +2,29 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 
-	<test thread-count="5" name="LoginTest">
+	<test thread-count="5" name="LoginTest-FF">
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.serge.LoginTest">
 				<methods>
-					<exclude name=".*positiveLogInTest.*" />
-					<include name="negativeLogInTest" />
+					<include name=".*positiveLogInTest.*" />
+					<exclude name="negativeLogInTest" />
 				</methods>
 			</class>
 		</classes>
 	</test> <!-- Test -->
 
-	
+	<test thread-count="5" name="LoginTest-Chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.serge.LoginTest">
+				<methods>
+					<include name=".*positiveLogInTest.*" />
+					<exclude name="negativeLogInTest" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+
 
 </suite> <!-- Suite -->
