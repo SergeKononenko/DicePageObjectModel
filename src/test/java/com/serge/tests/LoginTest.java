@@ -6,14 +6,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.dice.base.CsvDataProvider;
-import com.dice.base.TestBase;
+import com.dice.base.TestUtilities;
 import com.dice.pages.LoginPage;
 import com.dice.pages.ProfilePage;
 
-public class LoginTest extends TestBase {
+public class LoginTest extends TestUtilities {
 
-	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class,
-			priority = 1, groups = { "positive" })
+	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class, priority = 1, groups = {
+			"positive" })
 	public void positiveLogInTest(Map<String, String> testData) {
 
 		LoginPage loginPage = new LoginPage(driver, log);
@@ -30,9 +30,11 @@ public class LoginTest extends TestBase {
 				+ password);
 
 		loginPage.openLoginPage();
+		takeScreenshot("LogIn Page Opened");
 		loginPage.fillEmailAndPassword(email, password);
 		ProfilePage profilePage = loginPage.clickSignInButton();
 		profilePage.waitForProfilePageToLoad();
+		takeScreenshot("User Loged in");
 
 		String actualTitle = profilePage.getTitle();
 		Assert.assertTrue(expectedPageTitle.equals(actualTitle),
@@ -46,7 +48,7 @@ public class LoginTest extends TestBase {
 	}
 
 	@Test(dataProvider = "CsvDataProvider", dataProviderClass = CsvDataProvider.class, 
-			priority = 2, groups = { "negative" })
+			priority = 2, groups = { "negative", "broken" })
 	public void negativeLogInTest(Map<String, String> testData) {
 
 		String expectedErrorMsg = "Email and/or password incorrect";
