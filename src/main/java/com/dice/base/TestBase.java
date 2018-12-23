@@ -41,7 +41,7 @@ public class TestBase {
 	}
 
 	protected WebDriver driver;
-	protected Logger log;
+	protected Logger log = Logger.getLogger("devpinoyLogger");
 
 	protected String testSuiteName;
 	protected String testName;

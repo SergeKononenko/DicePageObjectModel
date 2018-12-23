@@ -17,7 +17,7 @@ public class TestListener extends TestUtilities implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext testContext) {
-		
+		log.info("onStart of " + testContext.getName());
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class TestListener extends TestUtilities implements ITestListener {
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		
+		log.info("onTestStart of " + result.getName());
 	}
 
 	@Override
